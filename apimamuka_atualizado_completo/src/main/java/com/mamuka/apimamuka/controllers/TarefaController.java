@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/tarefas", produces = {"application/json"})
 public class TarefaController {
     @Autowired

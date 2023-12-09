@@ -2,6 +2,7 @@ package com.mamuka.apimamuka.controllers;
 
 import com.mamuka.apimamuka.dtos.ProjetoDto;
 import com.mamuka.apimamuka.models.ProjetoModel;
+import com.mamuka.apimamuka.models.UsuarioModel;
 import com.mamuka.apimamuka.repositories.ProjetoRepository;
 import com.mamuka.apimamuka.repositories.UsuarioRepository;
 import jakarta.validation.Valid;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/projetos", produces = {"application/json"})
 public class ProjetoController {
     @Autowired
@@ -59,5 +61,16 @@ public class ProjetoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(projetoRepository.save(projetoModel));
     }
 
+    @DeleteMapping ("/{idProjeto}")
+    public ResponseEntity<Object> deletarProjeto(@PathVariable(value = "idProjeto") UUID id){
+        Optional<ProjetoModel> projetoBuscado = projetoRepository.findById(id);
+
+        if (projetoBuscado.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Projeto não encontrado");
+        }
+        projetoRepository.delete(projetoBuscado.get());
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Projeto deletado com sucesso!");
+    }
 
 }
