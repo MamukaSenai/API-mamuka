@@ -13,7 +13,7 @@ id BINARY(16) NOT NULL,
 id_tipousuario BINARY(16) NOT NULL,
 nome VARCHAR(255) NOT NULL,
 cpf VARCHAR(255) NOT NULL, /*confirmar*/
-data_nascimento DATE,
+data_nascimento DATE, /*modificar para binary*/
 status_atividade BOOL,
 departamento VARCHAR(255) NOT NULL,
 id_responsavel BINARY(16) NOT NULL, /* melhor id(responsavel) para api */
