@@ -32,6 +32,8 @@ public class ProjetoModel implements Serializable {
 
     private String status_projeto;
 
+    private String responsavel;
+
     @Temporal(TemporalType.DATE)
     private Date data_inicio; // VERFICAR O TIPO DA VARIAVEL
 

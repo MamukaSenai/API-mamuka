@@ -12,6 +12,9 @@ public record ProjetoDto(
         @NotNull UUID id_usuario,
         @NotBlank String nome_projeto,
         @NotBlank String status_projeto,
+
+        @NotBlank String responsavel,
+
         @NotNull Date data_inicio,
         @NotNull Date data_conclusao
 ) {
