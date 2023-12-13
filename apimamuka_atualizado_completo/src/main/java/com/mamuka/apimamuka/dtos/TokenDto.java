@@ -1,4 +1,10 @@
 package com.mamuka.apimamuka.dtos;
 
-public record TokenDto(String token) {
+import java.util.UUID;
+
+public record TokenDto(
+        String token,
+        UUID idUsuario
+
+) {
 }

@@ -44,7 +44,9 @@ public class ProjetoController {
 
     //@PostMapping
     @PostMapping
-    public ResponseEntity<Object> cadastrarProjeto(@RequestBody @Valid ProjetoDto projetoDto){
+//    Para resolver o erro do Media Type no React, precisa trocar o RequestBody por ModelAtributte, porem nao conseguimos
+//    cadastrar projeto
+    public ResponseEntity<Object> cadastrarProjeto(@ModelAttribute @Valid ProjetoDto projetoDto){
         ProjetoModel projetoModel = new ProjetoModel();
 
         BeanUtils.copyProperties(projetoDto, projetoModel);
@@ -56,6 +58,7 @@ public class ProjetoController {
         } else {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body("id_gestor não encontrado");
         }
+
 
 
         return ResponseEntity.status(HttpStatus.CREATED).body(projetoRepository.save(projetoModel));

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class LoginController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class LoginController {
 
     @Autowired
     private TokenService tokenService;
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody @Valid LoginDto dados) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(dados.email(),dados.senha());
@@ -34,6 +34,8 @@ public class LoginController {
 
         var token = tokenService.gerarToken((UsuarioModel) auth.getPrincipal());
 
-        return ResponseEntity.status(HttpStatus.OK).body(new TokenDto(token));
+        UsuarioModel usuario = (UsuarioModel) auth.getPrincipal();
+
+        return ResponseEntity.status(HttpStatus.OK).body(new TokenDto(token, usuario.getId()));
     }
 }

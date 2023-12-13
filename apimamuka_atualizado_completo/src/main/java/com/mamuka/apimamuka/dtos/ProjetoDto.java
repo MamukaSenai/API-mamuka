@@ -15,7 +15,7 @@ public record ProjetoDto(
 
         @NotBlank String responsavel,
 
-        @NotNull Date data_inicio,
-        @NotNull Date data_conclusao
+        @NotNull String data_inicio,
+        @NotNull String data_conclusao
 ) {
 }
