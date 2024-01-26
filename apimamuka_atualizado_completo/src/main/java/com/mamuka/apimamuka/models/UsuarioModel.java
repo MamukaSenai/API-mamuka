@@ -36,7 +36,7 @@ public class UsuarioModel implements Serializable, UserDetails {
     private String departamento;
 
 //    private UUID id_responsavel ;
-    private String responsavel;
+//    private String responsavel;
 
     private String perfil;
     private String cargo;

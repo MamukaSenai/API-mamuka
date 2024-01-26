@@ -13,7 +13,7 @@ public record UsuarioDto (
         Date dataNascimento,
         Boolean statusAtividade,
         String departamento,
-        String responsavel,
+//        String responsavel,
         String perfil,
         String cargo,
         @NotBlank @Email(message = " O email deve estar em um formato valido ") String email,

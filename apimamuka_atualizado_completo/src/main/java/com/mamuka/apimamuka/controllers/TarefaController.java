@@ -26,8 +26,8 @@ public class TarefaController {
     @Autowired
     ProjetoRepository projetoRepository;
 
-//    @Autowired
-//    UsuarioRepository usuarioRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @GetMapping
     public ResponseEntity<List<TarefaModel>> listarTarefas(){
@@ -58,6 +58,14 @@ public class TarefaController {
             tarefaModel.setProjeto(projeto.get());
         } else {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body("id_projeto não encontrado");
+        }
+
+        var dev = usuarioRepository.findById(tarefaDto.id_usuario());
+
+        if (dev.isPresent()) {
+            tarefaModel.setDev(dev.get());
+        } else {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body("id_usuario não encontrado");
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(tarefaRepository.save(tarefaModel));

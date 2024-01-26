@@ -42,6 +42,25 @@ public class ProjetoController {
         return ResponseEntity.status(HttpStatus.OK).body(projetoBuscado.get());
     }
 
+
+//    criando um get para tentar resolver esse erro que aparece na api ao cadastrar projeto no front end:
+//    [Field error in object 'projetoDto' on field 'id_usuario': rejected value [user];
+//    codes [typeMismatch.projetoDto.id_usuario,typeMismatch.id_usuario,typeMismatch.java.util.UUID,typeMismatch];
+//    arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [projetoDto.id_usuario,id_usuario]; arguments []; default message [id_usuario]];
+//    default message [Failed to convert value of type 'java.lang.String' to required type 'java.util.UUID'; Invalid UUID string: user]]
+    @GetMapping("/convertToUUID")
+    public String convertToUUID(@RequestParam String uuidString) {
+        try {
+            UUID uuid = UUID.fromString(uuidString);
+            // Se a conversão for bem-sucedida, faça algo com o UUID
+            return "UUID válido: " + uuid.toString();
+        } catch (IllegalArgumentException e) {
+            // Captura a exceção se a string não puder ser convertida para UUID
+            return "Erro: A string não é um UUID válido";
+            // Lide com a situação de string inválida, por exemplo, fornecendo um valor padrão
+            // ou notificando o usuário sobre o problema.
+        }
+    }
     //@PostMapping
     @PostMapping
 //    Para resolver o erro do Media Type no React, precisa trocar o RequestBody por ModelAtributte, porem nao conseguimos
